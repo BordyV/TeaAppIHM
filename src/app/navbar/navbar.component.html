@@ -1,28 +1,19 @@
 <mat-toolbar color="primary">
-    <nav><button routerLink="/home" mat-icon-button class="example-icon"
-            aria-label="Example icon-button with menu icon">
-            <mat-icon>menu</mat-icon>
-        </button></nav>
-    <span>My App</span>
-    <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-        <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-        <mat-icon>share</mat-icon>
-    </button>
-</mat-toolbar>
+    <div fxFlex gdGap="20px" fxLayout="row">
+        <mat-icon>emoji_food_beverage</mat-icon>
 
-<mat-drawer-container class="example-container" autosize>
-    <mat-drawer #drawer class="example-sidenav" mode="side">
-        <p>Auto-resizing sidenav</p>
-
-    </mat-drawer>
-
-    <div class="example-sidenav-content">
-        <button type="button" mat-button (click)="drawer.toggle()">
-            Toggle sidenav
-        </button>
+        <nav>
+            <a routerLink="/">Liste thés</a>
+        </nav>
+        <nav>
+            <a routerLink="/detail">Ajouter un thé</a>
+        </nav>
     </div>
-
-</mat-drawer-container>
+    <div fxFlex fxLayout="row" gdGap="20px" fxLayoutAlign="end">
+        <nav>
+            <a routerLink="/profil">
+                <mat-icon>account_circle</mat-icon>
+            </a>
+        </nav>
+    </div>
+</mat-toolbar>

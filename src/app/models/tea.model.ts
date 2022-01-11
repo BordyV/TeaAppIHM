@@ -1,8 +1,5 @@
 export class Tea {
-  reference!:number;
-  name!:string;
-  location!:string; 
-  dateExp!:boolean;
-  quantity!:number;
-  _id!:string;
+  reference!: number;
+  name!: string;
+  _id!: string;
 }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,17 +11,18 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { NavbarComponent } from './navbar/navbar.component';
+import { MatTableModule } from '@angular/material/table';
 
 
-const routes:Routes = [
+const routes: Routes = [
   {
-    path:"",
+    path: "",
     component: TeaListComponent
   },
   {
-    path:"home",
+    path: "detail",
     component: TeaDetailComponent
   }
 ];
@@ -34,13 +36,15 @@ const routes:Routes = [
   exports: [RouterModule],
   imports: [
     BrowserModule,
+    FlexLayoutModule,
     AppRoutingModule,
-    RouterModule.forRoot(routes),  
+    RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     MatIconModule,
     MatToolbarModule,
     MatButtonModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
