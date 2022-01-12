@@ -1,31 +1,55 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { connect, Observable, of } from 'rxjs';
+import { Tea } from '../models/tea.model';
 
 @Component({
   selector: 'app-tea-list',
   templateUrl: './tea-list.component.html',
-  styleUrls: ['./tea-list.component.scss']
+  styleUrls: ['./tea-list.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({ height: '0px', minHeight: '0', visibility: 'hidden' })),
+      state('expanded', style({ height: '*', visibility: 'visible' })),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class TeaListComponent implements OnInit {
 
-  ELEMENT_DATA: any[] = [
-    { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-    { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-    { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-    { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-    { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-    { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-    { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-    { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-    { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-    { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
+  ELEMENT_DATA: Tea[] = [
+    {
+      reference: 71512,
+      name: "Thé de la France de mélenchon",
+      totalQuantity: 0,
+      stock: [],
+      _id: "507f191e810c19729de860ea"
+    },
+    {
+      reference: 41512,
+      name: "Thé de la France insoumise",
+      totalQuantity: 120000,
+      stock: [{
+        _idTea: "507f191e810c19729de860ea",
+        location: "rangée 4b",
+        dateExp: new Date(),
+        quantity: 10,
+      }],
+      _id: "507f191e810c19729de860ea"
+    },
   ];
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = ['reference', 'name', 'totalQuantity'];
   dataSource = this.ELEMENT_DATA;
+
+
+  toggleRow(element: { expanded: boolean; }) {
+    element.expanded = !element.expanded
+  }
+
   constructor() { }
 
   ngOnInit(): void {
 
   }
-
 }
