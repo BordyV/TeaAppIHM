@@ -21,14 +21,12 @@ export class TeaListComponent implements OnInit {
     {
       reference: 71512,
       name: "Thé de la France de mélenchon",
-      totalQuantity: 0,
       stock: [],
       _id: "507f191e810c19729de860ea"
     },
     {
       reference: 41512,
       name: "Thé de la France insoumise",
-      totalQuantity: 120000,
       stock: [{
         _idTea: "507f191e810c19729de860ea",
         location: "rangée 4b",
