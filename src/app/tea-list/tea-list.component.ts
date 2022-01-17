@@ -2,6 +2,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { Component, OnInit } from '@angular/core';
 import { connect, Observable, of } from 'rxjs';
 import { Tea } from '../models/tea.model';
+import { TeaService } from '../services/tea.service';
 
 @Component({
   selector: 'app-tea-list',
@@ -17,25 +18,25 @@ import { Tea } from '../models/tea.model';
 })
 export class TeaListComponent implements OnInit {
 
-  ELEMENT_DATA: Tea[] = [
-    {
-      reference: 71512,
-      name: "Thé de la France de mélenchon",
-      stock: [],
-      _id: "507f191e810c19729de860ea"
-    },
-    {
-      reference: 41512,
-      name: "Thé de la France insoumise",
-      stock: [{
-        _idTea: "507f191e810c19729de860ea",
-        location: "rangée 4b",
-        dateExp: new Date(),
-        quantity: 10,
-      }],
-      _id: "507f191e810c19729de860ea"
-    },
-  ];
+  // ELEMENT_DATA: Tea[] = [
+  //   {
+  //     _id: "507f191e810c19729de860ea",
+  //     reference: 71512,
+  //     name: "Thé vert",
+  //     stock: []
+  //   },
+  //   {
+  //     _id: "507f191e810c19729de860ea",
+  //     reference: 41512,
+  //     name: "Thé noir",
+  //     stock: [{
+  //       location: "rangée 4b",
+  //       dateExp: new Date(),
+  //       quantity: 10,
+  //     }],
+  //   },
+  // ];
+  ELEMENT_DATA: Tea[] = [];
 
   displayedColumns: string[] = ['reference', 'name', 'totalQuantity'];
   dataSource = this.ELEMENT_DATA;
@@ -45,9 +46,17 @@ export class TeaListComponent implements OnInit {
     element.expanded = !element.expanded
   }
 
-  constructor() { }
+  constructor(private teaService: TeaService) { }
 
   ngOnInit(): void {
+    this.getTeas();
+  }
 
+  getTeas() {
+    this.teaService.getTeas().subscribe((data) => {
+      this.ELEMENT_DATA = data;
+      this.dataSource = data;
+      console.log(data);
+    });
   }
 }
