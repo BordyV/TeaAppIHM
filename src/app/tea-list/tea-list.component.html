@@ -1,3 +1,4 @@
+<button (click)="initTeas()">peupler bd</button>
 <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
 
     <!--- Note that these columns can be defined in any order.
@@ -24,14 +25,14 @@
     <ng-container matColumnDef="expandedDetail">
         <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
             <div class="element-detail" [@detailExpand]="element.expanded ? 'expanded' : 'collapsed'">
-                <h1 *ngIf="!element.stock || element.stock.length<=0">pas de stock lié à ce thé</h1>
-                <table class="detail-table" *ngIf="element.stock && element.stock.length>0">
+                <h1 *ngIf="!element.stocks || element.stocks.length<=0">pas de stocks lié à ce thé</h1>
+                <table class="detail-table" *ngIf="element.stocks && element.stocks.length>0">
                     <tr>
                         <th>date Expiration</th>
                         <th>Quantité</th>
                         <th>Emplacement</th>
                     </tr>
-                    <tr *ngFor="let s of element.stock">
+                    <tr *ngFor="let s of element.stocks">
                         <td>{{s.date}}</td>
                         <td>{{s.quantity}}</td>
                         <td>{{s.location}}</td>

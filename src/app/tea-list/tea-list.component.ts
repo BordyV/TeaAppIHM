@@ -18,28 +18,9 @@ import { TeaService } from '../services/tea.service';
 })
 export class TeaListComponent implements OnInit {
 
-  // ELEMENT_DATA: Tea[] = [
-  //   {
-  //     _id: "507f191e810c19729de860ea",
-  //     reference: 71512,
-  //     name: "Thé vert",
-  //     stock: []
-  //   },
-  //   {
-  //     _id: "507f191e810c19729de860ea",
-  //     reference: 41512,
-  //     name: "Thé noir",
-  //     stock: [{
-  //       location: "rangée 4b",
-  //       dateExp: new Date(),
-  //       quantity: 10,
-  //     }],
-  //   },
-  // ];
-  ELEMENT_DATA: Tea[] = [];
 
   displayedColumns: string[] = ['reference', 'name', 'totalQuantity'];
-  dataSource = this.ELEMENT_DATA;
+  dataSource: Tea[] = [];
 
 
   toggleRow(element: { expanded: boolean; }) {
@@ -50,13 +31,18 @@ export class TeaListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTeas();
+    
   }
 
   getTeas() {
     this.teaService.getTeas().subscribe((data) => {
-      this.ELEMENT_DATA = data;
       this.dataSource = data;
       console.log(data);
+    });
+  }
+    initTeas() {
+    this.teaService.initBdMockData().subscribe(() => {
+      console.log('LA BASE EST ENTIEREMENT REMPLIE AVEC LES DONNEES DE TEST');
     });
   }
 }
