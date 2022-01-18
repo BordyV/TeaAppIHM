@@ -1,5 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { connect, Observable, of } from 'rxjs';
 import { Tea } from '../models/tea.model';
 import { TeaService } from '../services/tea.service';
@@ -16,11 +18,14 @@ import { TeaService } from '../services/tea.service';
     ]),
   ],
 })
-export class TeaListComponent implements OnInit {
+export class TeaListComponent implements OnInit, AfterViewInit {
+
+  @ViewChild('paginator')
+  paginator!: MatPaginator;
 
 
   displayedColumns: string[] = ['reference', 'name', 'totalQuantity'];
-  dataSource: Tea[] = [];
+  dataSource: MatTableDataSource<Tea> = new MatTableDataSource();
 
 
   toggleRow(element: { expanded: boolean; }) {
@@ -31,16 +36,25 @@ export class TeaListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTeas();
-    
+
   }
 
+  ngAfterViewInit() {
+    this.getTeas();
+
+  }
+  setTeasTable(data: Tea[]) {
+    this.dataSource = new MatTableDataSource(data);
+
+    this.dataSource.paginator = this.paginator;
+
+  }
   getTeas() {
     this.teaService.getTeas().subscribe((data) => {
-      this.dataSource = data;
-      console.log(data);
+      this.setTeasTable(data);
     });
   }
-    initTeas() {
+  initTeas() {
     this.teaService.initBdMockData().subscribe(() => {
       console.log('LA BASE EST ENTIEREMENT REMPLIE AVEC LES DONNEES DE TEST');
     });
