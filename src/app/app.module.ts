@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TeaListComponent } from './tea-list/tea-list.component';
 import { TeaDetailComponent } from './tea-detail/tea-detail.component';
-import { RouterModule, Routes } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
@@ -17,44 +16,45 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { MatTableModule } from '@angular/material/table';
 import { TeaCreateComponent } from './tea-create/tea-create.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { MatTabsModule } from '@angular/material/tabs';
+import { TeaFormComponent } from './tea-create/tea-form/tea-form.component';
+import { StockFormComponent } from './tea-create/stock-form/stock-form.component';
 
 
-const routes: Routes = [
-  {
-    path: "",
-    component: TeaListComponent
-  },
-  {
-    path: "creer",
-    component: TeaCreateComponent
-  },
-  {
-    path: "detail",
-    component: TeaDetailComponent
-  }
-];
+
 @NgModule({
   declarations: [
     AppComponent,
     TeaListComponent,
     TeaDetailComponent,
     NavbarComponent,
-    TeaCreateComponent
+    TeaCreateComponent,
+    TeaFormComponent,
+    StockFormComponent
   ],
-  exports: [RouterModule],
   imports: [
     BrowserModule,
     FlexLayoutModule,
     AppRoutingModule,
     HttpClientModule,
-    RouterModule.forRoot(routes),
+    AppRoutingModule,
     BrowserAnimationsModule,
     MatIconModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -14,14 +14,14 @@ export class TeaService {
   private urlTea: String = 'tea/';
 
   constructor(
-    private http:HttpClient
+    private http: HttpClient
   ) { }
 
-    getTeas():Observable<Tea[]> {
-    return this.http.get<Tea[]>(environment.apiUrl + this.urlTea);
-    }
-  
-  addTea(tea:Tea): Observable<any> {
+  getTeas(): Observable<Tea[]> {
+    return this.http.get<Tea[]>(environment.apiUrl + this.urlTea + 'instock');
+  }
+
+  addTea(tea: Tea): Observable<any> {
     return this.http.post<Tea>(environment.apiUrl + this.urlTea, tea);
   }
 
@@ -29,24 +29,24 @@ export class TeaService {
 
     const BufferForAddAssignment: any = [];
     //pour chaque thé de notre fichier
-      bdInitialTeas.forEach((tea) => {
-        const newTea = new Tea();        
-        newTea.stocks = [];
-        //pour chaque stock de notre thé 
-        tea.stocks.forEach((stock) => {
-          const newStock = new Stock();
-          newStock.dateExp = new Date(stock.dateExp);
-          newStock.location = stock.location;
-          newStock.quantity = Number(stock.quantity);
-          newTea.stocks?.push(newStock);
-        });       
-
-        newTea._id = tea._id;
-        newTea.name = tea.name;
-        newTea.reference = Number(tea.reference);
-
-        BufferForAddAssignment.push(this.addTea(newTea));
+    bdInitialTeas.forEach((tea) => {
+      const newTea = new Tea();
+      newTea.stocks = [];
+      //pour chaque stock de notre thé 
+      tea.stocks.forEach((stock) => {
+        const newStock = new Stock();
+        newStock.dateExp = new Date(stock.dateExp);
+        newStock.location = stock.location;
+        newStock.quantity = Number(stock.quantity);
+        newTea.stocks?.push(newStock);
       });
-        return forkJoin(BufferForAddAssignment); // renvoie un seul Observable pour dire que c'est fini    
+
+      newTea._id = tea._id;
+      newTea.name = tea.name;
+      newTea.reference = Number(tea.reference);
+
+      BufferForAddAssignment.push(this.addTea(newTea));
+    });
+    return forkJoin(BufferForAddAssignment); // renvoie un seul Observable pour dire que c'est fini    
   }
 }

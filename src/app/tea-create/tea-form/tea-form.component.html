@@ -1,0 +1,20 @@
+<form #addTeaForm="ngForm" (ngSubmit)="onSubmit()" fxFlex gdGap="20px" fxLayout="column">
+
+    <h2>Ajouter un thé</h2>
+    <mat-error *ngIf="errorMessage">
+        {{errorMessage}}
+    </mat-error>
+    <mat-form-field>
+        <input matInput type="number" placeholder="Reference" [(ngModel)]="reference" name="reference" required>
+        <mat-error>
+            Entrez une référence valide
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="text" placeholder="Nom" [(ngModel)]="name" name="name" required>
+        <mat-error>
+            Entrez un nom valide
+        </mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" [disabled]="!addTeaForm.valid">Ajouter la référence</button>
+</form>

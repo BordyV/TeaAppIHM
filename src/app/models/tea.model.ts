@@ -1,8 +1,8 @@
 import { Stock } from "./stock.model";
 
 export class Tea {
-  _id!: string;
+  _id!: String;
   reference!: number;
-  name!: string;
+  name!: String;
   stocks?: Array<Stock>;
 }
