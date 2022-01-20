@@ -13,6 +13,7 @@ export class TeaFormComponent implements OnInit {
   reference: number = 1;
   name: String = "";
   errorMessage: String = "";
+  successMessage: String = "";
   constructor(private teaService: TeaService) { }
 
   ngOnInit(): void {
@@ -23,8 +24,14 @@ export class TeaFormComponent implements OnInit {
     newTea.reference = this.reference;
     newTea.name = this.name;
     this.teaService.addTea(newTea).subscribe({
-      next: (v) => console.log(v),
-      error: (e) => { this.errorMessage = e.error.erreur },
+      next: (v) => {
+        this.successMessage = v.message;
+        this.errorMessage = ""
+      },
+      error: (e) => {
+        this.errorMessage = e.error.erreur;
+        this.successMessage = ""
+      },
       complete: () => console.info('complete')
     })
   }

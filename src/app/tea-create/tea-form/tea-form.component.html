@@ -4,6 +4,9 @@
     <mat-error *ngIf="errorMessage">
         {{errorMessage}}
     </mat-error>
+    <p id="successMessage" *ngIf="successMessage">
+        {{successMessage}}
+    </p>
     <mat-form-field>
         <input matInput type="number" placeholder="Reference" [(ngModel)]="reference" name="reference" required>
         <mat-error>

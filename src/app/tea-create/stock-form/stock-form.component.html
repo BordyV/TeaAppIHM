@@ -1,1 +1,30 @@
-<p>stock-form works!</p>
+<form #addStockForm="ngForm" (ngSubmit)="onSubmit()" fxFlex gdGap="20px" fxLayout="column">
+
+    <h2>Ajouter du stock à un thé</h2>
+    <mat-error *ngIf="errorMessage">
+        {{errorMessage}}
+    </mat-error>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Référence</mat-label>
+        <input type="text" placeholder="Choisir la référence" matInput [formControl]="myControl"
+            [matAutocomplete]="auto" required>
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let ref of filteredRef | async" [value]="ref">
+                {{ref}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="number" placeholder="Quantité" name="reference" min="1" required>
+        <mat-error>
+            Entrez une quantité valide
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <input matInput [matDatepicker]="picker" placeholder="Date de péremption" name="date" required>
+
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <button mat-raised-button color="primary" [disabled]="!addStockForm.valid">Ajouter du stock</button>
+</form>

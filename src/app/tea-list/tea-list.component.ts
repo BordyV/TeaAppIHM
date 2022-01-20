@@ -3,6 +3,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { connect, Observable, of } from 'rxjs';
+import { Stock } from '../models/stock.model';
 import { Tea } from '../models/tea.model';
 import { TeaService } from '../services/tea.service';
 
@@ -51,12 +52,25 @@ export class TeaListComponent implements OnInit, AfterViewInit {
   }
   getTeas() {
     this.teaService.getTeas().subscribe((data) => {
-      this.setTeasTable(data);
+      this.teaService.teaList = data;
+      //on ne récupère que les thés qui ont du stock 
+      let filteredTea = data.filter((tea: Tea) => {
+        return tea.stocks?.length;
+      });
+      this.setTeasTable(filteredTea);
     });
   }
   initTeas() {
     this.teaService.initBdMockData().subscribe(() => {
       console.log('LA BASE EST ENTIEREMENT REMPLIE AVEC LES DONNEES DE TEST');
     });
+  }
+
+  totalQuantity(tea: Tea): number {
+    let total: number = 0;
+    for (let stock of tea.stocks!) {
+      total += stock.quantity;
+    }
+    return total;
   }
 }

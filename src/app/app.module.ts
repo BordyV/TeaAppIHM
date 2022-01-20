@@ -23,7 +23,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import { TeaFormComponent } from './tea-create/tea-form/tea-form.component';
 import { StockFormComponent } from './tea-create/stock-form/stock-form.component';
-
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -54,7 +56,10 @@ import { StockFormComponent } from './tea-create/stock-form/stock-form.component
     FormsModule,
     ReactiveFormsModule,
     MatCardModule,
-    MatTabsModule
+    MatTabsModule,
+    MatAutocompleteModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

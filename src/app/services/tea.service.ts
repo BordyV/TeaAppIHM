@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { forkJoin, Observable, throwError } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Stock } from '../models/stock.model';
 import { Tea } from '../models/tea.model';
@@ -12,17 +12,28 @@ import { bdInitialTeas } from '../shared/mock/mock_data_initDB';
 export class TeaService {
 
   private urlTea: String = 'tea/';
+  public teaList: Tea[] = [];
 
   constructor(
     private http: HttpClient
   ) { }
 
   getTeas(): Observable<Tea[]> {
-    return this.http.get<Tea[]>(environment.apiUrl + this.urlTea + 'instock');
+    return this.http.get<Tea[]>(environment.apiUrl + this.urlTea);
   }
 
   addTea(tea: Tea): Observable<any> {
     return this.http.post<Tea>(environment.apiUrl + this.urlTea, tea);
+  }
+
+  getReferenceName(): string[] {
+    let referenceName: string[] = [];
+    if (this.teaList.length > 0) {
+      referenceName = this.teaList.map((tea: Tea) => {
+        return tea.reference + " | " + tea.name;
+      });
+    }
+    return referenceName;
   }
 
   initBdMockData(): Observable<any> {
