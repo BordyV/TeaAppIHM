@@ -1,0 +1,23 @@
+<form #login="ngForm" (ngSubmit)="onSubmit()" fxFlex gdGap="20px" fxLayout="column">
+
+    <h2>Se connecter</h2>
+    <mat-error *ngIf="errorMessage">
+        {{errorMessage}}
+    </mat-error>
+    <p id="successMessage" *ngIf="successMessage">
+        {{successMessage}}
+    </p>
+    <mat-form-field>
+        <input matInput type="text" placeholder="Nom d'utilisateur" [(ngModel)]="userName" name="userName" required>
+        <mat-error>
+            Entrez une référence valide
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="password" placeholder="Mot de passe" [(ngModel)]="password" name="password" required>
+        <mat-error>
+            Entrez un nom valide
+        </mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" [disabled]="!login.valid">Ajouter la référence</button>
+</form>

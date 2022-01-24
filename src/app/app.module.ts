@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +27,10 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { StockOutComponent } from './stock-out/stock-out.component';
+import { WrapperAuthComponent } from './wrapper-auth/wrapper-auth.component';
+import { LoginComponent } from './wrapper-auth/login/login.component';
+import { LogoutComponent } from './wrapper-auth/logout/logout.component';
+import { AuthInterceptor } from './shared/auth.interceptor';
 
 
 @NgModule({
@@ -38,7 +42,10 @@ import { StockOutComponent } from './stock-out/stock-out.component';
     TeaCreateComponent,
     TeaFormComponent,
     StockFormComponent,
-    StockOutComponent
+    StockOutComponent,
+    WrapperAuthComponent,
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +70,9 @@ import { StockOutComponent } from './stock-out/stock-out.component';
     MatDatepickerModule,
     MatNativeDateModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
