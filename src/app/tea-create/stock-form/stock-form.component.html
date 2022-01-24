@@ -4,9 +4,12 @@
     <mat-error *ngIf="errorMessage">
         {{errorMessage}}
     </mat-error>
+    <p id="successMessage" *ngIf="successMessage">
+        {{successMessage}}
+    </p>
     <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Référence</mat-label>
-        <input type="text" placeholder="Choisir la référence" matInput [formControl]="myControl"
+        <input type="text" placeholder="Choisir la référence" matInput [formControl]="referenceControl"
             [matAutocomplete]="auto" required>
         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option *ngFor="let ref of filteredRef | async" [value]="ref">
@@ -15,16 +18,23 @@
         </mat-autocomplete>
     </mat-form-field>
     <mat-form-field>
-        <input matInput type="number" placeholder="Quantité" name="reference" min="1" required>
+        <input matInput type="number" placeholder="Quantité" [(ngModel)]="quantity" name="reference" min="1" required>
         <mat-error>
             Entrez une quantité valide
         </mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
-        <input matInput [matDatepicker]="picker" placeholder="Date de péremption" name="date" required>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="dateExp" placeholder="Date de péremption" name="date"
+            required>
 
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="text" placeholder="Location" [(ngModel)]="location" name="location" required>
+        <mat-error>
+            Entrez une location valide
+        </mat-error>
     </mat-form-field>
     <button mat-raised-button color="primary" [disabled]="!addStockForm.valid">Ajouter du stock</button>
 </form>

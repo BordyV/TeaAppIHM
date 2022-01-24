@@ -26,6 +26,7 @@ import { StockFormComponent } from './tea-create/stock-form/stock-form.component
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { StockOutComponent } from './stock-out/stock-out.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     NavbarComponent,
     TeaCreateComponent,
     TeaFormComponent,
-    StockFormComponent
+    StockFormComponent,
+    StockOutComponent
   ],
   imports: [
     BrowserModule,

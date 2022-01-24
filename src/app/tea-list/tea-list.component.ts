@@ -53,6 +53,7 @@ export class TeaListComponent implements OnInit, AfterViewInit {
   getTeas() {
     this.teaService.getTeas().subscribe((data) => {
       this.teaService.teaList = data;
+      console.log(data[0].stocks![0].dateExp);
       //on ne récupère que les thés qui ont du stock 
       let filteredTea = data.filter((tea: Tea) => {
         return tea.stocks?.length;

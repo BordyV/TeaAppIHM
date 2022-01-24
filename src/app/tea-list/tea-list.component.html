@@ -34,7 +34,7 @@
                             <th>Quantité</th>
                         </tr>
                         <tr *ngFor="let s of element.stocks">
-                            <td>{{s.date}}</td>
+                            <td>{{s.dateExp | date:'dd/MM/yyyy'}}</td>
                             <td>{{s.location}}</td>
                             <td>{{s.quantity}}</td>
                         </tr>

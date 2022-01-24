@@ -12,6 +12,7 @@ import { bdInitialTeas } from '../shared/mock/mock_data_initDB';
 export class TeaService {
 
   private urlTea: String = 'tea/';
+  private urlStock: String = 'stock';
   public teaList: Tea[] = [];
 
   constructor(
@@ -24,6 +25,10 @@ export class TeaService {
 
   addTea(tea: Tea): Observable<any> {
     return this.http.post<Tea>(environment.apiUrl + this.urlTea, tea);
+  }
+
+  addStockToTea(stock: Stock, uid: String): Observable<any> {
+    return this.http.post<Stock>(environment.apiUrl + this.urlTea + uid + "/" + this.urlStock, stock);
   }
 
   getReferenceName(): string[] {
