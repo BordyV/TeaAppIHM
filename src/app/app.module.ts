@@ -31,6 +31,8 @@ import { WrapperAuthComponent } from './wrapper-auth/wrapper-auth.component';
 import { LoginComponent } from './wrapper-auth/login/login.component';
 import { LogoutComponent } from './wrapper-auth/logout/logout.component';
 import { AuthInterceptor } from './shared/auth.interceptor';
+import { InscriptionComponent } from './wrapper-auth/inscription/inscription.component';
+import { TableStockComponent } from './stock-out/table-stock/table-stock.component';
 
 
 @NgModule({
@@ -45,7 +47,9 @@ import { AuthInterceptor } from './shared/auth.interceptor';
     StockOutComponent,
     WrapperAuthComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    InscriptionComponent,
+    TableStockComponent
   ],
   imports: [
     BrowserModule,

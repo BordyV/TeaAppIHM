@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './shared/auth.guard';
+import { StockOutComponent } from './stock-out/stock-out.component';
 import { TeaCreateComponent } from './tea-create/tea-create.component';
 import { TeaDetailComponent } from './tea-detail/tea-detail.component';
 import { TeaListComponent } from './tea-list/tea-list.component';
@@ -24,6 +25,10 @@ const routes: Routes = [
   {
     path: "auth",
     component: WrapperAuthComponent
+  },
+  {
+    path: "sortirStock",
+    component: StockOutComponent
   }
 ];
 @NgModule({

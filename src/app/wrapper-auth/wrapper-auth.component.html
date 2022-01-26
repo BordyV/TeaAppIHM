@@ -1,6 +1,16 @@
-<div *ngIf="!isLoggedIn()">
-    <app-login></app-login>
-</div>
 <div *ngIf="isLoggedIn()">
     <app-logout></app-logout>
 </div>
+<mat-card fxFlex="50%" *ngIf="!isLoggedIn()">
+    <mat-card-content>
+        <mat-tab-group>
+            <mat-tab label="Connexion">
+                <app-login></app-login>
+            </mat-tab>
+            <mat-tab label="Inscription">
+                <app-inscription></app-inscription>
+            </mat-tab>
+        </mat-tab-group>
+
+    </mat-card-content>
+</mat-card>

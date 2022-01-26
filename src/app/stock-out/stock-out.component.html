@@ -1,1 +1,33 @@
-<p>stock-out works!</p>
+<mat-card fxFlex="50%">
+    <mat-card-title>Sortir du stock</mat-card-title>
+    <mat-card-content>
+        <form #stockOutForm="ngForm" (ngSubmit)="onSubmit()" fxFlex gdGap="20px" fxLayout="column">
+
+            <mat-error *ngIf="errorMessage">
+                {{errorMessage}}
+            </mat-error>
+            <p id="successMessage" *ngIf="successMessage">
+                {{successMessage}}
+            </p>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Référence</mat-label>
+                <input type="text" placeholder="Choisir la référence" matInput [formControl]="referenceControl"
+                    [matAutocomplete]="auto" (ngModelChange)="referenceChanged()" required>
+                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                    <mat-option *ngFor="let ref of filteredRef | async" [value]="ref">
+                        {{ref}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <app-table-stock *ngIf="teaReference.stocks" [stocks]="teaReference.stocks"></app-table-stock>
+            <mat-form-field>
+                <input matInput type="number" placeholder="Quantité" [(ngModel)]="quantity" name="reference" min="0"
+                    required>
+                <mat-error>
+                    Entrez une quantité valide
+                </mat-error>
+            </mat-form-field>
+            <button mat-raised-button color="primary" [disabled]="!stockOutForm.valid">Supprimer du stock</button>
+        </form>
+    </mat-card-content>
+</mat-card>

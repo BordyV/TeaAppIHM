@@ -48,11 +48,12 @@ export class TeaListComponent implements OnInit, AfterViewInit {
     this.dataSource = new MatTableDataSource(data);
 
     this.dataSource.paginator = this.paginator;
-
   }
+
   getTeas() {
     this.teaService.getTeas().subscribe((data) => {
       this.teaService.teaList = data;
+      console.log(data.length)
       //on ne récupère que les thés qui ont du stock 
       let filteredTea = data.filter((tea: Tea) => {
         return tea.stocks?.length;
@@ -60,11 +61,7 @@ export class TeaListComponent implements OnInit, AfterViewInit {
       this.setTeasTable(filteredTea);
     });
   }
-  initTeas() {
-    this.teaService.initBdMockData().subscribe(() => {
-      console.log('LA BASE EST ENTIEREMENT REMPLIE AVEC LES DONNEES DE TEST');
-    });
-  }
+
 
   totalQuantity(tea: Tea): number {
     let total: number = 0;

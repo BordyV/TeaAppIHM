@@ -13,6 +13,7 @@ export class TeaService {
 
   private urlTea: String = 'tea/';
   private urlStock: String = 'stock';
+  private urlDeleteStock: String = 'stock/out';
   public teaList: Tea[] = [];
 
   constructor(
@@ -31,10 +32,15 @@ export class TeaService {
     return this.http.post<Stock>(environment.apiUrl + this.urlTea + uid + "/" + this.urlStock, stock);
   }
 
-  getReferenceName(): string[] {
+  deleteStockToTea(quantity: number, uid: String): Observable<any> {
+    let body = JSON.stringify({ quantity: quantity });
+    return this.http.put<Stock>(environment.apiUrl + this.urlTea + uid + "/" + this.urlDeleteStock, JSON.parse(body));
+  }
+
+  getReferenceName(teas: Tea[]): string[] {
     let referenceName: string[] = [];
-    if (this.teaList.length > 0) {
-      referenceName = this.teaList.map((tea: Tea) => {
+    if (teas.length > 0) {
+      referenceName = teas.map((tea: Tea) => {
         return tea.reference + " | " + tea.name;
       });
     }

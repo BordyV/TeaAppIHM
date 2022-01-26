@@ -38,7 +38,8 @@ export class StockFormComponent implements OnInit {
   }
 
   private initFilter() {
-    this.listReference = this.teaService.getReferenceName();
+
+    this.listReference = this.teaService.getReferenceName(this.teaService.teaList);
     this.filteredRef = this.referenceControl.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value)),
@@ -57,6 +58,7 @@ export class StockFormComponent implements OnInit {
     newStock.dateExp = this.dateExp;
     let index = this.listReference.indexOf(this.referenceControl.value);
     let tea: Tea = this.teaService.teaList[index];
+    debugger
     //si le thé existe on rajoute du stock
     if (tea) {
       this.teaService.addStockToTea(newStock, tea._id).subscribe({
