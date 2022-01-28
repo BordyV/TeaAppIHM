@@ -26,7 +26,6 @@ export class AuthService {
   }
 
   isUserLoggedIn(): boolean {
-
     if (localStorage.getItem('id_token') && localStorage.getItem('expire_at')) {
       return this.isExpirationValid();
     }
@@ -57,7 +56,6 @@ export class AuthService {
     const expiration = localStorage.getItem('expire_at');
 
     const expiresAt = JSON.parse(expiration!);
-    console.log(moment(expiresAt))
     return moment().isBefore(moment(expiresAt * 1000));
   }
 
