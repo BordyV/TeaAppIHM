@@ -1,1 +1,30 @@
-<p>inscription works!</p>
+<form #inscription="ngForm" (ngSubmit)="onSubmit()" fxFlex gdGap="20px" fxLayout="column">
+
+    <h2>Se connecter</h2>
+    <mat-error *ngIf="errorMessage">
+        {{errorMessage}}
+    </mat-error>
+    <p id="successMessage" *ngIf="successMessage">
+        {{successMessage}}
+    </p>
+    <mat-form-field>
+        <input matInput type="text" placeholder="Nom d'utilisateur" [(ngModel)]="userPseudo" name="userPseudo" required>
+        <mat-error>
+            Entrez un nom d'utilisateur valide
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="text" placeholder="Email" [(ngModel)]="userEmail" name="userEmail" required>
+        <mat-error>
+            Entrez un email valide
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="password" placeholder="Mot de passe" [(ngModel)]="password" name="password" required>
+        <mat-error>
+            Entrez un mot de passe valide
+        </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" [disabled]="!inscription.valid">S'inscrire</button>
+</form>

@@ -6,7 +6,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TeaListComponent } from './tea-list/tea-list.component';
-import { TeaDetailComponent } from './tea-detail/tea-detail.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
@@ -35,13 +34,14 @@ import { InscriptionComponent } from './wrapper-auth/inscription/inscription.com
 import { TableStockComponent } from './table-stock/table-stock.component';
 import { TeaFilterComponent } from './tea-list/tea-filter/tea-filter.component';
 import { MatSortModule } from '@angular/material/sort';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SnackBarComponent } from './shared/snack-bar/snack-bar.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TeaListComponent,
-    TeaDetailComponent,
     NavbarComponent,
     TeaCreateComponent,
     TeaFormComponent,
@@ -52,7 +52,8 @@ import { MatSortModule } from '@angular/material/sort';
     LogoutComponent,
     InscriptionComponent,
     TableStockComponent,
-    TeaFilterComponent
+    TeaFilterComponent,
+    SnackBarComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +77,8 @@ import { MatSortModule } from '@angular/material/sort';
     MatAutocompleteModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSortModule
+    MatSortModule,
+    MatSnackBarModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

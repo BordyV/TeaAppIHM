@@ -25,6 +25,15 @@ export class AuthService {
     return this.http.post<any>(environment.apiUrl + this.urlUser + "connection", body);
   }
 
+  inscription(userPseudo: string, userEmail: string, password: string): Observable<any> {
+    let body = {
+      userPseudo: userPseudo,
+      userEmail: userEmail,
+      userPassword: password
+    }
+    return this.http.post<any>(environment.apiUrl + this.urlUser + "addUser", body);
+  }
+
   isUserLoggedIn(): boolean {
     if (localStorage.getItem('id_token') && localStorage.getItem('expire_at')) {
       return this.isExpirationValid();

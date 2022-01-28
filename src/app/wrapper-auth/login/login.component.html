@@ -8,15 +8,15 @@
         {{successMessage}}
     </p>
     <mat-form-field>
-        <input matInput type="text" placeholder="Nom d'utilisateur" [(ngModel)]="userName" name="userName" required>
+        <input matInput type="text" placeholder="Email" [(ngModel)]="userName" name="userName" required>
         <mat-error>
-            Entrez une référence valide
+            Entrez un email valide
         </mat-error>
     </mat-form-field>
     <mat-form-field>
         <input matInput type="password" placeholder="Mot de passe" [(ngModel)]="password" name="password" required>
         <mat-error>
-            Entrez un nom valide
+            Entrez un mot de passe valide
         </mat-error>
     </mat-form-field>
     <button mat-raised-button color="primary" [disabled]="!login.valid">Se connecter</button>
