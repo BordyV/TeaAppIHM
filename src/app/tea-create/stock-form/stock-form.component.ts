@@ -58,7 +58,6 @@ export class StockFormComponent implements OnInit {
     newStock.dateExp = this.dateExp;
     let index = this.listReference.indexOf(this.referenceControl.value);
     let tea: Tea = this.teaService.teaList[index];
-    debugger
     //si le thé existe on rajoute du stock
     if (tea) {
       this.teaService.addStockToTea(newStock, tea._id).subscribe({

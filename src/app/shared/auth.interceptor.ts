@@ -16,7 +16,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   // Permet d'intercepter les requetes http et de rajouter le token
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const token = this.authService.jwt;
+    const token = localStorage.getItem('id_token');
 
     if (!token) {
       return next.handle(request);

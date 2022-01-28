@@ -1,6 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { connect, Observable, of } from 'rxjs';
 import { Stock } from '../models/stock.model';
@@ -24,6 +25,7 @@ export class TeaListComponent implements OnInit, AfterViewInit {
   @ViewChild('paginator')
   paginator!: MatPaginator;
 
+  @ViewChild(MatSort) sort!: MatSort;
 
   displayedColumns: string[] = ['reference', 'name', 'totalQuantity'];
   dataSource: MatTableDataSource<Tea> = new MatTableDataSource();
@@ -46,7 +48,7 @@ export class TeaListComponent implements OnInit, AfterViewInit {
   }
   setTeasTable(data: Tea[]) {
     this.dataSource = new MatTableDataSource(data);
-
+    this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
 
@@ -62,6 +64,9 @@ export class TeaListComponent implements OnInit, AfterViewInit {
     });
   }
 
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 
   totalQuantity(tea: Tea): number {
     let total: number = 0;

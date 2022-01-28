@@ -32,7 +32,9 @@ import { LoginComponent } from './wrapper-auth/login/login.component';
 import { LogoutComponent } from './wrapper-auth/logout/logout.component';
 import { AuthInterceptor } from './shared/auth.interceptor';
 import { InscriptionComponent } from './wrapper-auth/inscription/inscription.component';
-import { TableStockComponent } from './stock-out/table-stock/table-stock.component';
+import { TableStockComponent } from './table-stock/table-stock.component';
+import { TeaFilterComponent } from './tea-list/tea-filter/tea-filter.component';
+import { MatSortModule } from '@angular/material/sort';
 
 
 @NgModule({
@@ -49,7 +51,8 @@ import { TableStockComponent } from './stock-out/table-stock/table-stock.compone
     LoginComponent,
     LogoutComponent,
     InscriptionComponent,
-    TableStockComponent
+    TableStockComponent,
+    TeaFilterComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +75,8 @@ import { TableStockComponent } from './stock-out/table-stock/table-stock.compone
     MatTabsModule,
     MatAutocompleteModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSortModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

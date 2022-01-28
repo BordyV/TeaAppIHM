@@ -32,8 +32,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(this.userName, this.password).subscribe({
       next: (v) => {
-        this.authService.isloggedIn = true;
-        this.authService.jwt = v.token;
+        this.authService.setSessionJWT(v.token);
         this.errorMessage = ""
       },
       error: (e) => {

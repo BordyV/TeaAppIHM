@@ -16,7 +16,7 @@ export class WrapperAuthComponent implements OnInit {
 
   }
   isLoggedIn() {
-    return this.authService.isloggedIn;
+    return this.authService.isUserLoggedIn();
   }
 
 }
