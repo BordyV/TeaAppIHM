@@ -30,8 +30,11 @@
             <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
                 <div class="element-detail" [@detailExpand]="element.expanded ? 'expanded' : 'collapsed'">
                     <h1 *ngIf="!element.stocks || element.stocks.length<=0">pas de stocks lié à ce thé</h1>
-                    <app-table-stock [stocks]="element.stocks" *ngIf="element.stocks && element.stocks.length>0">
-                    </app-table-stock>
+                    <div *ngIf="element.stocks || element.stocks.length>0">
+                        <app-table-stock [stocks]="element.stocks" *ngIf="element.stocks && element.stocks.length>0">
+                        </app-table-stock>
+                        <br>
+                    </div>
                 </div>
             </td>
         </ng-container>

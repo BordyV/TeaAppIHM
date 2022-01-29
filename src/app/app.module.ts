@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -36,7 +36,15 @@ import { TeaFilterComponent } from './tea-list/tea-filter/tea-filter.component';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackBarComponent } from './shared/snack-bar/snack-bar.component';
+import { ListLogComponent } from './list-log/list-log.component';
+import { MatListModule } from '@angular/material/list';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+import { TeaDetailComponent } from './tea-detail/tea-detail.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
+
+registerLocaleData(localeFr, 'fr');
 
 @NgModule({
   declarations: [
@@ -53,7 +61,9 @@ import { SnackBarComponent } from './shared/snack-bar/snack-bar.component';
     InscriptionComponent,
     TableStockComponent,
     TeaFilterComponent,
-    SnackBarComponent
+    SnackBarComponent,
+    ListLogComponent,
+    TeaDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -78,10 +88,14 @@ import { SnackBarComponent } from './shared/snack-bar/snack-bar.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSortModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatListModule,
+    MatProgressBarModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: LOCALE_ID, useValue: 'fr' }
+
   ],
   bootstrap: [AppComponent]
 })

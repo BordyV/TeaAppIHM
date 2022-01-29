@@ -24,6 +24,10 @@ export class TeaService {
     return this.http.get<Tea[]>(environment.apiUrl + this.urlTea);
   }
 
+  getTeaById(id: string): Observable<Tea> {
+    return this.http.get<Tea>(environment.apiUrl + this.urlTea + id);
+  }
+
   addTea(tea: Tea): Observable<any> {
     return this.http.post<Tea>(environment.apiUrl + this.urlTea, tea);
   }
@@ -32,9 +36,9 @@ export class TeaService {
     return this.http.post<Stock>(environment.apiUrl + this.urlTea + uid + "/" + this.urlStock, stock);
   }
 
-  deleteStockToTea(quantity: number, uid: String): Observable<any> {
-    let body = JSON.stringify({ quantity: quantity });
-    return this.http.put<Stock>(environment.apiUrl + this.urlTea + uid + "/" + this.urlDeleteStock, JSON.parse(body));
+  deleteStockToTea(quantity: number, tea: Tea): Observable<any> {
+    let body = JSON.stringify({ quantity: quantity, tea: tea });
+    return this.http.put<Stock>(environment.apiUrl + this.urlTea + tea._id + "/" + this.urlDeleteStock, JSON.parse(body));
   }
 
   getReferenceName(teas: Tea[]): string[] {

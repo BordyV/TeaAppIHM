@@ -20,6 +20,7 @@ export class StockOutComponent implements OnInit {
   filteredRef!: Observable<string[]>;
   errorMessage: String = "";
   successMessage: String = "";
+  progressBar: Boolean = false;
 
   constructor(private teaService: TeaService) { }
 
@@ -59,17 +60,22 @@ export class StockOutComponent implements OnInit {
     return this.listReference.filter(ref => ref.toLowerCase().includes(filterValue));
   }
   onSubmit() {
-    this.teaService.deleteStockToTea(this.quantity, this.teaReference._id).subscribe({
+    this.progressBar = true;
+    this.teaService.deleteStockToTea(this.quantity, this.teaReference).subscribe({
       next: (v) => {
+        this.progressBar = false;
         this.successMessage = v;
         this.errorMessage = ""
       },
       error: (e) => {
-        console.log(e)
+        this.progressBar = false;
         this.errorMessage = e.error.erreur;
         this.successMessage = ""
       },
-      complete: () => console.info('complete')
+      complete: () => {
+        this.progressBar = false;
+        console.info('complete')
+      }
     });
   }
 }
