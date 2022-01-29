@@ -26,6 +26,16 @@
             <td mat-cell *matCellDef="let element"> {{totalQuantity(element)}} </td>
         </ng-container>
 
+        <!-- detailTea Column -->
+        <ng-container matColumnDef="goToDetail">
+            <th mat-header-cell *matHeaderCellDef> page du thé </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button (click)="goToDetail(element._id)" aria-label="ouvrir le thé dans sa page">
+                    <mat-icon>open_in_new</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
         <ng-container matColumnDef="expandedDetail">
             <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
                 <div class="element-detail" [@detailExpand]="element.expanded ? 'expanded' : 'collapsed'">

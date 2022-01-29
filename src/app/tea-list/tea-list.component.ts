@@ -3,6 +3,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { connect, Observable, of } from 'rxjs';
 import { Stock } from '../models/stock.model';
 import { Tea } from '../models/tea.model';
@@ -27,7 +28,7 @@ export class TeaListComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatSort) sort!: MatSort;
 
-  displayedColumns: string[] = ['reference', 'name', 'totalQuantity'];
+  displayedColumns: string[] = ['reference', 'name', 'totalQuantity','goToDetail'];
   dataSource: MatTableDataSource<Tea> = new MatTableDataSource();
 
 
@@ -35,7 +36,7 @@ export class TeaListComponent implements OnInit, AfterViewInit {
     element.expanded = !element.expanded
   }
 
-  constructor(private teaService: TeaService) { }
+  constructor(private teaService: TeaService, private router: Router) { }
 
   ngOnInit(): void {
     this.getTeas();
@@ -74,5 +75,8 @@ export class TeaListComponent implements OnInit, AfterViewInit {
       total += stock.quantity;
     }
     return total;
+  }
+  goToDetail(id: string) {
+          this.router.navigate(['/detail', id]);
   }
 }
