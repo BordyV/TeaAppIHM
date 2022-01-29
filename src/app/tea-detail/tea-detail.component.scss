@@ -1,14 +1,19 @@
-mat-card { 
-    width: 90%;
-    margin: auto;
+mat-card {
+  width: 90%;
+  margin: auto;
 }
 #errorTea {
-    text-align: center;
+  text-align: center;
 }
 #divStockLog {
-    display: flex; flex-grow: grow
+  display: flex;
+  flex-grow: grow;
 }
 
-app-table-stock,app-log-tea-detail {
-    flex:1;
+app-table-stock,
+app-log-tea-detail {
+  padding-top: 10px;
+  flex: 1;
+  max-height: 450px;
+  overflow: auto;
 }
