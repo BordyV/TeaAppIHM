@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Log } from '../models/log.model';
 import { Tea } from '../models/tea.model';
 import { LogService } from '../services/log.service';
 import { TeaService } from '../services/tea.service';
+import { DeleteTeaDialogComponent } from './delete-tea-dialog/delete-tea-dialog.component';
 
 @Component({
   selector: 'app-tea-detail',
@@ -16,7 +19,11 @@ export class TeaDetailComponent implements OnInit {
 
   constructor(private teaService: TeaService,
     private logService: LogService,
-    private route: ActivatedRoute, private router: Router) { }
+    public dialog: MatDialog,
+    private route: ActivatedRoute,
+    private router: Router,
+    private _snackBar: MatSnackBar
+  ) { }
 
   ngOnInit(): void {
     this.getTeaDetail();
@@ -44,10 +51,39 @@ export class TeaDetailComponent implements OnInit {
 
   goToAddStock() {
     this.router.navigate(['/creer']);
-
   }
+
   goToOutStock() {
     this.router.navigate(['/sortirStock']);
+  }
 
+  openDialogDeleteTea() {
+    const dialogRef = this.dialog.open(DeleteTeaDialogComponent, { data: this.teaDetail! });
+
+    dialogRef.afterClosed().subscribe(result => {
+      
+      if (result) {
+        this.teaService.deleteTea(this.teaDetail!).subscribe({
+          next: (v) => {
+            if (v.reference)
+            {
+              this._snackBar.open("Suppression effectuée", "fermer", {
+                duration: 2 * 1000,
+                verticalPosition: 'top',
+              });
+            }
+            this.router.navigate(['/']);
+          },
+          error: (e) => {
+          this._snackBar.open("Erreur lors de la suppression: " + e, "fermer", {
+                duration: 2 * 1000,
+                verticalPosition: 'top',
+              });
+          },
+          complete: () => {
+          }
+        });
+      }
+    });
   }
 }

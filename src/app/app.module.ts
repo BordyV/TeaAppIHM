@@ -43,6 +43,8 @@ import localeFr from '@angular/common/locales/fr';
 import { TeaDetailComponent } from './tea-detail/tea-detail.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { LogTeaDetailComponent } from './tea-detail/log-tea-detail/log-tea-detail.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DeleteTeaDialogComponent } from './tea-detail/delete-tea-dialog/delete-tea-dialog.component';
 
 
 registerLocaleData(localeFr, 'fr');
@@ -65,7 +67,8 @@ registerLocaleData(localeFr, 'fr');
     SnackBarComponent,
     ListLogComponent,
     TeaDetailComponent,
-    LogTeaDetailComponent
+    LogTeaDetailComponent,
+    DeleteTeaDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -92,7 +95,8 @@ registerLocaleData(localeFr, 'fr');
     MatSortModule,
     MatSnackBarModule,
     MatListModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatDialogModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

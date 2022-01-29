@@ -32,6 +32,10 @@ export class TeaService {
     return this.http.post<Tea>(environment.apiUrl + this.urlTea, tea);
   }
 
+    deleteTea(tea: Tea): Observable<any> {
+    return this.http.delete<Tea>(environment.apiUrl + this.urlTea + "?_id=" +tea._id);
+  }
+
   addStockToTea(stock: Stock, uid: String): Observable<any> {
     return this.http.post<Stock>(environment.apiUrl + this.urlTea + uid + "/" + this.urlStock, stock);
   }
