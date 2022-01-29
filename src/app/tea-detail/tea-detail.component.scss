@@ -5,3 +5,10 @@ mat-card {
 #errorTea {
     text-align: center;
 }
+#divStockLog {
+    display: flex; flex-grow: grow
+}
+
+app-table-stock,app-log-tea-detail {
+    flex:1;
+}

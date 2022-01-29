@@ -42,6 +42,7 @@ import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { TeaDetailComponent } from './tea-detail/tea-detail.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { LogTeaDetailComponent } from './tea-detail/log-tea-detail/log-tea-detail.component';
 
 
 registerLocaleData(localeFr, 'fr');
@@ -63,7 +64,8 @@ registerLocaleData(localeFr, 'fr');
     TeaFilterComponent,
     SnackBarComponent,
     ListLogComponent,
-    TeaDetailComponent
+    TeaDetailComponent,
+    LogTeaDetailComponent
   ],
   imports: [
     BrowserModule,

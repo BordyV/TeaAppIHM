@@ -15,4 +15,8 @@ export class LogService {
   getLogs(): Observable<Log[]> {
     return this.http.get<Log[]>(environment.apiUrl + this.urlLog);
   }
+
+  getLogsByidOperationDocument(_idOperationDocument: string): Observable<Log[]> {
+    return this.http.get<Log[]>(environment.apiUrl + this.urlLog + _idOperationDocument);
+  }
 }

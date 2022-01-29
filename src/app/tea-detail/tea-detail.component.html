@@ -14,7 +14,14 @@
         <button mat-button color="primary" (click)="goToOutStock()">supprimer du stock</button>
         <br>
         <br>
-        <app-table-stock *ngIf="teaDetail.stocks" [stocks]="teaDetail.stocks"></app-table-stock>
+        <div id="divStockLog">
+            <app-table-stock *ngIf="teaDetail.stocks && teaDetail.stocks.length > 0" [stocks]="teaDetail.stocks">
+            </app-table-stock>
+            <app-log-tea-detail *ngIf="logsTeaDetail && logsTeaDetail.length > 0" [logs]="logsTeaDetail">
+            </app-log-tea-detail>
+        </div>
+
+
     </mat-card-content>
     <mat-card-actions>
         <button mat-button color="accent">modifier le thé</button>
