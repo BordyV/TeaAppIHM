@@ -105,7 +105,7 @@ export class TeaDetailComponent implements OnInit {
             this.router.navigate(['/']);
           },
           error: (e) => {
-          this._snackBar.open("Erreur lors de la modification: " + e, "fermer", {
+            this._snackBar.open("Erreur lors de la modification: " + e.error.erreur, "fermer", {
                 duration: 2 * 1000,
                 verticalPosition: 'top',
               });
