@@ -38,7 +38,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackBarComponent } from './shared/snack-bar/snack-bar.component';
 import { ListLogComponent } from './list-log/list-log.component';
 import { MatListModule } from '@angular/material/list';
-import { registerLocaleData } from '@angular/common';
+import { APP_BASE_HREF, HashLocationStrategy, LocationStrategy, registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { TeaDetailComponent } from './tea-detail/tea-detail.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -96,8 +96,8 @@ registerLocaleData(localeFr, 'fr');
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    { provide: LOCALE_ID, useValue: 'fr' }
-
+    { provide: LOCALE_ID, useValue: 'fr' },
+    { provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })
