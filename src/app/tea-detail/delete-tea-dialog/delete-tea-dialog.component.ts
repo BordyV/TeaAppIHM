@@ -10,12 +10,10 @@ import { TeaDetailComponent } from '../tea-detail.component';
 })
 export class DeleteTeaDialogComponent implements OnInit {
 
-  constructor(    public dialogRef: MatDialogRef<TeaDetailComponent>,
+  constructor(public dialogRef: MatDialogRef<TeaDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Tea) { }
 
   ngOnInit(): void {
-    console.log(this.data)
-    
   }
 
 }

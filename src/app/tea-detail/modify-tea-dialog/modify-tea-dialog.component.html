@@ -1,0 +1,81 @@
+<h2 mat-dialog-title>Modifier le thé: {{data.reference}} | {{data.name}} ?</h2>
+<mat-dialog-content>
+    <table cellspacing="0">
+        <tr>
+            <td>
+                <mat-form-field appearance="fill">
+                    <mat-label>Ref.</mat-label>
+                    <input matInput type="number" placeholder="124392" [(ngModel)]="teaTemp.reference">
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="fill">
+                    <mat-label>Nom</mat-label>
+                    <input matInput placeholder="Thé vert" [(ngModel)]="teaTemp.name">
+                </mat-form-field>
+            </td>
+        </tr>
+        <tr *ngIf="teaTemp.stocks && teaTemp.stocks.length > 0">
+            <td colspan="2">
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort matSortActive="dateExp"
+                    matSortDirection="asc">
+
+                    <!-- Delete Column -->
+                    <ng-container matColumnDef="delete">
+                        <th mat-header-cell *matHeaderCellDef> Delete </th>
+                        <td mat-cell *matCellDef="let element">
+                            <button mat-icon-button (click)="deleteStock(element)"
+                                aria-label="ouvrir le thé dans sa page">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="quantity">
+                        <th mat-header-cell *matHeaderCellDef> Quantité </th>
+                        <td mat-cell *matCellDef="let element">
+                            <mat-form-field appearance="fill">
+                                <input matInput type="number" placeholder="Quantité" [(ngModel)]="element.quantity"
+                                    name="location" min=1>
+                            </mat-form-field>
+                        </td>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="location">
+                        <th mat-header-cell *matHeaderCellDef> Location </th>
+                        <td mat-cell *matCellDef="let element">
+                            <mat-form-field appearance="fill">
+                                <input matInput type="text" placeholder="Location" [(ngModel)]="element.location"
+                                    name="location">
+                            </mat-form-field>
+                        </td>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="dateExp">
+                        <th mat-header-cell *matHeaderCellDef> date expiration </th>
+                        <td mat-cell *matCellDef="let element">
+                            <mat-form-field appearance="fill">
+                                <input matInput [matDatepicker]="picker" [(ngModel)]="element.dateExp"
+                                    placeholder="Date de péremption" name="date" required>
+
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        </td>
+                    </ng-container>
+
+
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Annuler</button>
+    <button mat-button [mat-dialog-close]="teaTemp" cdkFocusInitial>Confirmer</button>
+</mat-dialog-actions>

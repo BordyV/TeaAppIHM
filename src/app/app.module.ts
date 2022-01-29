@@ -45,6 +45,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { LogTeaDetailComponent } from './tea-detail/log-tea-detail/log-tea-detail.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DeleteTeaDialogComponent } from './tea-detail/delete-tea-dialog/delete-tea-dialog.component';
+import { ModifyTeaDialogComponent } from './tea-detail/modify-tea-dialog/modify-tea-dialog.component';
 
 
 registerLocaleData(localeFr, 'fr');
@@ -68,7 +69,8 @@ registerLocaleData(localeFr, 'fr');
     ListLogComponent,
     TeaDetailComponent,
     LogTeaDetailComponent,
-    DeleteTeaDialogComponent
+    DeleteTeaDialogComponent,
+    ModifyTeaDialogComponent
   ],
   imports: [
     BrowserModule,

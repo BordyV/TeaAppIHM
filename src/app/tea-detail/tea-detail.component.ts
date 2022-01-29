@@ -7,6 +7,7 @@ import { Tea } from '../models/tea.model';
 import { LogService } from '../services/log.service';
 import { TeaService } from '../services/tea.service';
 import { DeleteTeaDialogComponent } from './delete-tea-dialog/delete-tea-dialog.component';
+import { ModifyTeaDialogComponent } from './modify-tea-dialog/modify-tea-dialog.component';
 
 @Component({
   selector: 'app-tea-detail',
@@ -76,6 +77,35 @@ export class TeaDetailComponent implements OnInit {
           },
           error: (e) => {
           this._snackBar.open("Erreur lors de la suppression: " + e, "fermer", {
+                duration: 2 * 1000,
+                verticalPosition: 'top',
+              });
+          },
+          complete: () => {
+          }
+        });
+      }
+    });
+  }
+
+  openDialogEditTea() {
+    const dialogRef = this.dialog.open(ModifyTeaDialogComponent, { data: this.teaDetail! });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.teaService.modifyTea(result).subscribe({
+          next: (v) => {
+            if (v.reference)
+            {
+              this._snackBar.open("Modification effectuée", "fermer", {
+                duration: 2 * 1000,
+                verticalPosition: 'top',
+              });
+            }
+            this.router.navigate(['/']);
+          },
+          error: (e) => {
+          this._snackBar.open("Erreur lors de la modification: " + e, "fermer", {
                 duration: 2 * 1000,
                 verticalPosition: 'top',
               });
