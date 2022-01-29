@@ -7,7 +7,7 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./tea-create.component.scss']
 })
 export class TeaCreateComponent implements OnInit {
-
+  progressBar = false;
   constructor() { }
 
   ngOnInit(): void {

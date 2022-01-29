@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { map, Observable, startWith } from 'rxjs';
 import { Stock } from 'src/app/models/stock.model';
@@ -21,6 +21,8 @@ export class StockFormComponent implements OnInit {
   errorMessage: String = "";
   successMessage: String = "";
 
+  @Output() progressBarEvent = new EventEmitter<boolean>();
+
   constructor(private teaService: TeaService) { }
 
   ngOnInit(): void {
@@ -34,11 +36,9 @@ export class StockFormComponent implements OnInit {
     else {
       this.initFilter();
     }
-
   }
 
   private initFilter() {
-
     this.listReference = this.teaService.getReferenceName(this.teaService.teaList);
     this.filteredRef = this.referenceControl.valueChanges.pipe(
       startWith(''),
@@ -48,9 +48,9 @@ export class StockFormComponent implements OnInit {
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-
     return this.listReference.filter(ref => ref.toLowerCase().includes(filterValue));
   }
+
   onSubmit() {
     let newStock: Stock = new Stock();
     newStock.quantity = this.quantity;
@@ -60,16 +60,22 @@ export class StockFormComponent implements OnInit {
     let tea: Tea = this.teaService.teaList[index];
     //si le thé existe on rajoute du stock
     if (tea) {
+      this.progressBarEvent.emit(true);
       this.teaService.addStockToTea(newStock, tea._id).subscribe({
         next: (v) => {
+          this.progressBarEvent.emit(false);
           this.errorMessage = "";
           this.successMessage = v;
         },
         error: (e) => {
+          this.progressBarEvent.emit(false);
           this.errorMessage = e.error.erreur;
           this.successMessage = "";
         },
-        complete: () => console.info('complete')
+        complete: () => {
+          this.progressBarEvent.emit(false);
+          console.info('complete')
+        }
       })
     } else {
       this.errorMessage = "Veuillez choisir une référence existante";

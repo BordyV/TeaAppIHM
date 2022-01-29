@@ -11,7 +11,7 @@ export class WrapperAuthComponent implements OnInit {
   retUrl: string = "";
 
   constructor(private authService: AuthService) { }
-
+  progressBar: boolean = false;
   ngOnInit(): void {
 
   }

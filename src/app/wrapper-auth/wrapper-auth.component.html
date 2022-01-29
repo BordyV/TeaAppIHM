@@ -5,12 +5,14 @@
     <mat-card-content>
         <mat-tab-group>
             <mat-tab label="Connexion">
-                <app-login></app-login>
+                <app-login (progressBarEvent)="progressBar = $event"></app-login>
             </mat-tab>
             <mat-tab label="Inscription">
-                <app-inscription></app-inscription>
+                <app-inscription (progressBarEvent)="progressBar = $event"></app-inscription>
             </mat-tab>
         </mat-tab-group>
-
     </mat-card-content>
+    <mat-card-footer>
+        <mat-progress-bar *ngIf="progressBar" mode="indeterminate"></mat-progress-bar>
+    </mat-card-footer>
 </mat-card>
