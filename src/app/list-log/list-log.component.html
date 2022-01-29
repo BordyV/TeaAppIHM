@@ -1,14 +1,24 @@
-<mat-list>
+<mat-selection-list #logsSelect [multiple]="false">
     <div mat-subheader>Historique</div>
-    <mat-list-item *ngFor="let log of logs">
+    <mat-list-option *ngFor="let log of logs" [value]="log">
         <mat-icon mat-list-icon>{{log.category == 'Tea' ? "emoji_food_beverage" : "person"}}</mat-icon>
         <div mat-line>{{log.category == 'Tea'? "Thé" : "Utilisateur"}} |
-            {{log.createdAt | date : 'medium' }}</div>
+            {{log.createdAt | date : 'medium' }}
+        </div>
         <div mat-line> {{log.message}}
             <span *ngIf="log.category == 'Tea' && log.action != 'delete-tea'">
                 <button mat-button color="primary" (click)="changeToDetail(log._idOperationDocument)">Voir le détail du
                     thé</button>
             </span>
         </div>
-    </mat-list-item>
-</mat-list>
+        <div mat-line>
+            <span *ngIf="log.commentaire || logsSelect.selectedOptions.selected[0]?.value==log ">Commentaire :
+            </span>
+            <span *ngIf=" logsSelect.selectedOptions.selected[0]?.value !=log">
+                {{log.commentaire}}
+            </span>
+            <input (keydown)="handleInput($event)" *ngIf=" logsSelect.selectedOptions.selected[0]?.value==log"
+                (change)="addCommentaire(log)" [(ngModel)]="log.commentaire">
+        </div>
+    </mat-list-option>
+</mat-selection-list>

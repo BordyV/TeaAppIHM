@@ -19,4 +19,8 @@ export class LogService {
   getLogsByidOperationDocument(_idOperationDocument: string): Observable<Log[]> {
     return this.http.get<Log[]>(environment.apiUrl + this.urlLog + _idOperationDocument);
   }
+
+  updateLog(log: Log): Observable<any> {
+    return this.http.put<any>(environment.apiUrl + this.urlLog, log);
+  }
 }

@@ -4,6 +4,7 @@ export class Log {
     category!: string;
     createdBy!: string;
     message!: string;
+    commentaire!: string;
     _idOperationDocument?: string;
     createdAt!: Date;
     updatedAt!: Date;
