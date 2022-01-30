@@ -1,27 +1,52 @@
 # TeaAppIHM
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
+Ce projet est une application angular permettant de consulter le stock de thé d'une entreprise et de gérer les entrées/sorties avec un historique.
+Une démo en ligne est disponible à l'adresse suivante : https://valentinbordy.fr/tea
 
-## Development server
+## Liste des fonctionnalités: 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Global
+- Message d'erreur ou de succès sur les différentes opéartions
+- Indicateur de chargement sur les opérations d'ajout, de modification ou de suppression
 
-## Code scaffolding
+### Ecran d'accueil
+- Liste des thés en stock avec pagination
+- Detail des thés en cliquant sur une ligne du tableau
+- Filtre de la liste de thé 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Page détail du thé
+- Modification du thé et de ses informations
+- Consultation de l'historique d'opération
+- Consultation du stock
+- Suppression du thé
 
-## Build
+### Page ajouter un thé
+- Permet d'ajouter du stock à un thé existant
+- Permet d'ajouter un thé
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Page sortir du stock 
+- Permet la consultation du stock en cours
+- Permet de sortir une quantité d'unité du stock du thé voulu 
 
-## Running unit tests
+### Page historique 
+- Permet de consulter la liste des opérations sur les différents thés
+- - Permet de consulter la création d'un nouveau utilisateur
+- Pagination coté serveur
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Page authentification
+- Inscription
+- Connexion
+- Sauvegarde du JWT dans le cache 
+- Vérification de la date de validité du JWT
+- Redirection sur la page demandé avant la connection (param retUrl dans la requête)
 
-## Running end-to-end tests
+### Page profil
+- Ajout des thés par défaut
+- Suppression de tout les thés
+- Suppression de tout les logs
+- Déconnexion
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Consigne d'installation en local
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Lancer la commande `npm i` à la racine du projet puis `ng serve`pour avoir un serveur de developpement.
+Le serveur sera disponible à l'adresse suivante : `http://localhost:4200/`.
