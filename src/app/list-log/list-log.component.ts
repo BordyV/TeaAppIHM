@@ -32,9 +32,8 @@ export class ListLogComponent implements OnInit {
   }
 
   getLogs() {
-    this.logService.getLogsPagine(this.page,this.limit).subscribe((data) => {
- 
-      console.log(data.docs)
+    this.logService.getLogsPagine(this.page, this.limit).subscribe((data) => {
+
       this.logs = data.docs;
       //pagination
       this.page = data.page;
@@ -85,20 +84,18 @@ export class ListLogComponent implements OnInit {
     });
   }
   changePage(event: PageEvent) {
-    console.log(event)
-    this.page = event.pageIndex+1;
+    this.page = event.pageIndex + 1;
     this.limit = event.pageSize;
     this.getLogs();
   }
 
   backGroundColor(log: Log): string {
-    if (log.action.includes("add"))
-    {
+    if (log.action.includes("add")) {
       return "add";
     } else if (log.action.includes("modify")) {
       return "modify";
     } else if (log.action.includes("delete")) {
-      return "delete"; 
+      return "delete";
     } else {
       return "";
     }

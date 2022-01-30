@@ -28,7 +28,7 @@ export class TeaListComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatSort) sort!: MatSort;
 
-  displayedColumns: string[] = ['reference', 'name', 'totalQuantity','goToDetail'];
+  displayedColumns: string[] = ['reference', 'name', 'totalQuantity', 'goToDetail'];
   dataSource: MatTableDataSource<Tea> = new MatTableDataSource();
 
 
@@ -56,7 +56,6 @@ export class TeaListComponent implements OnInit, AfterViewInit {
   getTeas() {
     this.teaService.getTeas().subscribe((data) => {
       this.teaService.teaList = data;
-      console.log(data.length)
       //on ne récupère que les thés qui ont du stock 
       let filteredTea = data.filter((tea: Tea) => {
         return tea.stocks?.length;
@@ -77,6 +76,6 @@ export class TeaListComponent implements OnInit, AfterViewInit {
     return total;
   }
   goToDetail(id: string) {
-          this.router.navigate(['/detail', id]);
+    this.router.navigate(['/detail', id]);
   }
 }

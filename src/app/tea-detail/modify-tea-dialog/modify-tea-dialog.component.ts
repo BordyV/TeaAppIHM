@@ -12,9 +12,9 @@ import { TeaDetailComponent } from '../tea-detail.component';
   styleUrls: ['./modify-tea-dialog.component.scss']
 })
 export class ModifyTeaDialogComponent implements OnInit {
-  
+
   teaTemp: Tea = new Tea;
-  displayedColumns: string[] = ['delete','quantity', 'location', 'dateExp'];
+  displayedColumns: string[] = ['delete', 'quantity', 'location', 'dateExp'];
   dataSource: MatTableDataSource<Stock> = new MatTableDataSource();
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -27,9 +27,8 @@ export class ModifyTeaDialogComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
   deleteStock(stock: Stock) {
-    console.log(stock)
     this.teaTemp.stocks!.splice(this.teaTemp.stocks!.indexOf(stock), 1);
     this.dataSource = new MatTableDataSource(this.teaTemp.stocks);
     this.dataSource.sort = this.sort;
-  } 
+  }
 }
