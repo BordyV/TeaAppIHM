@@ -9,16 +9,12 @@ import { TeaService } from 'src/app/services/tea.service';
 })
 export class LogoutComponent implements OnInit {
 
-  constructor(private authService: AuthService, private teaService: TeaService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
   }
   logout() {
     this.authService.logoutUser();
   }
-  initTeas() {
-    this.teaService.initBdMockData().subscribe(() => {
-      console.log('LA BASE EST ENTIEREMENT REMPLIE AVEC LES DONNEES DE TEST');
-    });
-  }
+
 }

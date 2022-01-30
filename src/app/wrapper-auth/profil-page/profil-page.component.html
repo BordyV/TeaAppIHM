@@ -1,0 +1,42 @@
+<mat-card class="profil-card">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image">
+            <mat-icon>person</mat-icon>
+        </div>
+        <mat-card-title>{{getUserEmail()}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-list>
+            <div mat-subheader>Opérations Base de données</div>
+            <mat-list-item>
+                <mat-icon mat-list-icon>add</mat-icon>
+                <div mat-line>
+                    <button mat-button color="primary" (click)="initTeas()">Ajouter les thés par défaut</button>
+                </div>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon mat-list-icon>delete</mat-icon>
+                <div mat-line>
+                    <button mat-button color="primary" (click)="deleteTeas()">Supprimer les thés en base</button>
+                </div>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon mat-list-icon>delete</mat-icon>
+                <div mat-line>
+                    <button mat-button color="primary" (click)="deleteLogs()">Supprimer les logs en base</button>
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <div mat-subheader>Profil</div>
+            <mat-list-item>
+                <mat-icon mat-list-icon>logout</mat-icon>
+                <div mat-line>
+                    <app-logout></app-logout>
+                </div>
+            </mat-list-item>
+        </mat-list>
+    </mat-card-content>
+    <mat-card-footer>
+        <mat-progress-bar *ngIf="progressBar" mode="indeterminate"></mat-progress-bar>
+    </mat-card-footer>
+</mat-card>

@@ -46,6 +46,7 @@ import { LogTeaDetailComponent } from './tea-detail/log-tea-detail/log-tea-detai
 import {MatDialogModule} from '@angular/material/dialog';
 import { DeleteTeaDialogComponent } from './tea-detail/delete-tea-dialog/delete-tea-dialog.component';
 import { ModifyTeaDialogComponent } from './tea-detail/modify-tea-dialog/modify-tea-dialog.component';
+import { ProfilPageComponent } from './wrapper-auth/profil-page/profil-page.component';
 
 
 registerLocaleData(localeFr, 'fr');
@@ -70,7 +71,8 @@ registerLocaleData(localeFr, 'fr');
     TeaDetailComponent,
     LogTeaDetailComponent,
     DeleteTeaDialogComponent,
-    ModifyTeaDialogComponent
+    ModifyTeaDialogComponent,
+    ProfilPageComponent
   ],
   imports: [
     BrowserModule,

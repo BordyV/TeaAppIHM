@@ -33,10 +33,13 @@ export class TeaService {
   }
 
   deleteTea(tea: Tea): Observable<any> {
-    return this.http.delete<Tea>(environment.apiUrl + this.urlTea + "?_id=" +tea._id);
+    return this.http.delete<Tea>(environment.apiUrl + this.urlTea + "?_id=" + tea._id);
   }
 
-  
+  deleteAllTeas(): Observable<any> {
+    return this.http.delete<any>(environment.apiUrl + this.urlTea + 'all');
+  }
+
   modifyTea(tea: Tea): Observable<any> {
     return this.http.put<Tea>(environment.apiUrl + this.urlTea, tea);
   }

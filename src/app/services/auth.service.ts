@@ -10,7 +10,6 @@ import * as moment from "moment";
   providedIn: 'root'
 })
 export class AuthService {
-  private userName: string = "";
   private urlUser: String = 'user/';
 
   constructor(private http: HttpClient
@@ -41,12 +40,6 @@ export class AuthService {
     return false;
   }
 
-  isAdminUser(): boolean {
-    if (this.userName == 'Admin') {
-      return true;
-    }
-    return false;
-  }
   getDecodedAccessToken(token: string): any {
     try {
       return jwt_decode(token);
@@ -59,6 +52,7 @@ export class AuthService {
     const expireDate = tokenInfo.exp; // get token expiration dateTime
     localStorage.setItem('id_token', jwt);
     localStorage.setItem('expire_at', JSON.stringify(expireDate.valueOf()));
+    localStorage.setItem('email', tokenInfo.email);
   }
 
   isExpirationValid() {
@@ -66,6 +60,10 @@ export class AuthService {
 
     const expiresAt = JSON.parse(expiration!);
     return moment().isBefore(moment(expiresAt * 1000));
+  }
+
+  getUserName() {
+    return localStorage.getItem('email');
   }
 
   logoutUser(): void {
