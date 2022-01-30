@@ -1,6 +1,6 @@
 <mat-selection-list #logsSelect [multiple]="false">
     <div mat-subheader>Historique</div>
-    <mat-list-option *ngFor="let log of logs" [value]="log">
+    <mat-list-option *ngFor="let log of logs" [value]="log" [ngClass]="backGroundColor(log)">
         <mat-icon mat-list-icon>{{log.category == 'Tea' ? "emoji_food_beverage" : "person"}}</mat-icon>
         <div mat-line>{{log.category == 'Tea'? "Thé" : "Utilisateur"}} |
             {{log.createdAt | date : 'medium' }}</div>
@@ -15,5 +15,6 @@
             <input (keydown)="handleInput($event)" *ngIf=" logsSelect.selectedOptions.selected[0]?.value==log"
                 (change)="addCommentaire(log)" [(ngModel)]="log.commentaire">
         </div>
+        <mat-divider></mat-divider>
     </mat-list-option>
 </mat-selection-list>

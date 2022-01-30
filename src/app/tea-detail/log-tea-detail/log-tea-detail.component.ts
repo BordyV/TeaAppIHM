@@ -47,4 +47,17 @@ export class LogTeaDetailComponent implements OnInit {
       verticalPosition: 'top',
     });
   }
+
+    backGroundColor(log: Log): string {
+    if (log.action.includes("add"))
+    {
+      return "add";
+    } else if (log.action.includes("modify")) {
+      return "modify";
+    } else if (log.action.includes("delete")) {
+      return "delete"; 
+    } else {
+      return "";
+    }
+  }
 }
