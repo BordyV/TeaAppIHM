@@ -10,7 +10,7 @@ Une démo en ligne est disponible à l'adresse suivante : https://valentinbordy.
 - Indicateur de chargement sur les opérations d'ajout, de modification ou de suppression
 
 ### Ecran d'accueil
-- Liste des thés en stock avec pagination
+- Liste des thés en stock avec pagination et tri
 - Detail des thés en cliquant sur une ligne du tableau
 - Filtre de la liste de thé 
 
