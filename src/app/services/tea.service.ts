@@ -63,9 +63,17 @@ export class TeaService {
     return referenceName;
   }
 
+  setTeasFromList(teas:Tea[]): Observable<any> {
+     const BufferForAddTeas: any = [];
+    teas.forEach((tea) => {
+      BufferForAddTeas.push(this.addTea(tea));
+    })
+    return forkJoin(BufferForAddTeas);    
+  }
+
   initBdMockData(): Observable<any> {
 
-    const BufferForAddAssignment: any = [];
+    const BufferForAddTeas: any = [];
     //pour chaque thé de notre fichier
     bdInitialTeas.forEach((tea) => {
       const newTea = new Tea();
@@ -83,8 +91,8 @@ export class TeaService {
       newTea.name = tea.name;
       newTea.reference = Number(tea.reference);
 
-      BufferForAddAssignment.push(this.addTea(newTea));
+      BufferForAddTeas.push(this.addTea(newTea));
     });
-    return forkJoin(BufferForAddAssignment); // renvoie un seul Observable pour dire que c'est fini    
+    return forkJoin(BufferForAddTeas); // renvoie un seul Observable pour dire que c'est fini    
   }
 }

@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>Importer des thés : </h2>
+<mat-dialog-content>
+    <mat-stepper [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="firstFormGroup" label="Choix du fichier">
+            <p>Attention le fichier doit être sous le format <b>.json</b></p>
+            <p *ngIf="selectedFile">{{selectedFile.name}}</p>
+            <button mat-raised-button color="primary" md-button (click)="imgFileInput.click()">Choisir le fichier des
+                thés</button>
+            <input hidden type="file" accept=".json" (change)="previewTeas($event)" #imgFileInput />
+            <button mat-button matStepperNext>Suivant</button>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup" label="Vérification des données">
+            <p>Le fichier se nomme : <b *ngIf="selectedFile">{{selectedFile.name}}</b></p>
+            <p>Le fichier contient : <b>{{teasFromFile.length}}</b> thés.</p>
+
+            <button mat-button matStepperPrevious>Retour</button>
+        </mat-step>
+    </mat-stepper>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Annuler</button>
+    <button mat-button [mat-dialog-close]="teasFromFile" [disabled]="teasFromFile.length <= 0">Importer</button>
+</mat-dialog-actions>

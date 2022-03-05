@@ -47,6 +47,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { DeleteTeaDialogComponent } from './tea-detail/delete-tea-dialog/delete-tea-dialog.component';
 import { ModifyTeaDialogComponent } from './tea-detail/modify-tea-dialog/modify-tea-dialog.component';
 import { ProfilPageComponent } from './wrapper-auth/profil-page/profil-page.component';
+import { ImportTeasDialogComponent } from './wrapper-auth/profil-page/import-teas-dialog/import-teas-dialog.component';
+import {MatStepperModule} from '@angular/material/stepper';
 
 
 registerLocaleData(localeFr, 'fr');
@@ -72,7 +74,8 @@ registerLocaleData(localeFr, 'fr');
     LogTeaDetailComponent,
     DeleteTeaDialogComponent,
     ModifyTeaDialogComponent,
-    ProfilPageComponent
+    ProfilPageComponent,
+    ImportTeasDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -100,7 +103,8 @@ registerLocaleData(localeFr, 'fr');
     MatSnackBarModule,
     MatListModule,
     MatProgressBarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatStepperModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

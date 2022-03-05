@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/services/auth.service';
 import { LogService } from 'src/app/services/log.service';
 import { TeaService } from 'src/app/services/tea.service';
+import { ImportTeasDialogComponent } from './import-teas-dialog/import-teas-dialog.component';
 
 @Component({
   selector: 'app-profil-page',
@@ -16,7 +18,9 @@ export class ProfilPageComponent implements OnInit {
     private authService: AuthService,
     private teaService: TeaService,
     private logService: LogService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private dialog: MatDialog,
+
   ) { }
 
   ngOnInit(): void {
@@ -32,6 +36,50 @@ export class ProfilPageComponent implements OnInit {
         duration: 2 * 1000,
         verticalPosition: 'top',
       });
+    });
+  }
+  
+  importTeas() {
+    const dialogRef = this.dialog.open(ImportTeasDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.progressBar = true;
+        this.teaService.setTeasFromList(result).subscribe(
+          {
+            next: () => {
+              this._snackBar.open("Thés ajoutés correctement ", "fermer", {
+                duration: 2 * 1000,
+                verticalPosition: 'top',
+              });
+            },
+            error: (e) => {
+              this.progressBar = false;
+              this._snackBar.open("Une erreur est survenue.", "fermer", {
+                duration: 2 * 1000,
+                verticalPosition: 'top',
+              });
+            },
+            complete: () => {
+              this.progressBar = false;
+            }
+          });
+        }
+    });
+  }
+
+  exportTeas() {
+    this.teaService.getTeas().subscribe((data) => {
+    //code from : https://stackoverflow.com/a/49603945
+      let sJson = JSON.stringify(data);
+      let element = document.createElement('a');
+      let nameFile = "tea_" + new Date().toLocaleDateString() + ".json";
+      element.setAttribute('href', "data:text/json;charset=UTF-8," + encodeURIComponent(sJson));
+      element.setAttribute('download',nameFile);
+      element.style.display = 'none';
+      document.body.appendChild(element);
+      element.click(); // simulate click
+      document.body.removeChild(element);
     });
   }
 

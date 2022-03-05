@@ -15,6 +15,18 @@
                 </div>
             </mat-list-item>
             <mat-list-item>
+                <mat-icon mat-list-icon>file_upload</mat-icon>
+                <div mat-line>
+                    <button mat-button color="primary" (click)="importTeas()">Importer les thés via un fichier</button>
+                </div>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon mat-list-icon>file_download</mat-icon>
+                <div mat-line>
+                    <button mat-button color="primary" (click)="exportTeas()">Télécharger les thés</button>
+                </div>
+            </mat-list-item>
+            <mat-list-item>
                 <mat-icon mat-list-icon>delete</mat-icon>
                 <div mat-line>
                     <button mat-button color="primary" (click)="deleteTeas()">Supprimer les thés en base</button>
